@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\ClientsModel;
-
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 /*
@@ -30,15 +28,23 @@ $dados = [
     'bairro'=>'Macedo',
     'cep' => '07197100'
 ];
-    return ClientsModel::create($dados);
+    return \ClientsModel::create($dados);
 });
-$router->get('pastel', 'clientscontroller@tables');
+$router->get('pastel', 'ClientsController@tables');
 $router->group(['prefix'=>'clients'], function() use ($router){
-    $router->get('id/{id}', function($id){
-        return "vai retornar por ID";
-    });
-    $router->get('list', function(){
-        return "vai listar aqui";
-    });
-    $router->post('create', 'clientscontroller@store');
+    /**
+     * finalizadas
+     */
+    $router->get('list', 'ClientsController@list');
+    $router->post('create', 'ClientsController@store');
+    $router->get(
+        'id/{id}',
+        fn($id) => App\Http\Controllers\ClientsController::show($id));
+    /**
+     * trabalhando
+     */
+    $router->get(
+        'clients/delete/',
+        fn($id) => App\Http\Controllers\ClientsController::show($id));
+
 });
