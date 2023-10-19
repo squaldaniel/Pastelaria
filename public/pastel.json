@@ -1,0 +1,16 @@
+{
+        "title": "ahhhh kkkk",
+        "summary": "A pet store manager.",
+        "description": "This is a sample server for a pet store.",
+        "termsOfService": "https://example.com/terms/",
+        "contact": {
+          "name": "API Support",
+          "url": "https://www.example.com/support",
+          "email": "support@example.com"
+        },
+        "license": {
+          "name": "Apache 2.0",
+          "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.1",
+    "resources":[{"_id":"req_ced9ffc65c074710b03f6cdc1548b54c","parentId":"wrk_e873df6ab47a42bc87d4dba329fad770","modified":1697744489292,"created":1697743380507,"url":"{{ _.host }}clients/list","name":"new_userr","description":"","method":"GET","body":{},"parameters":[],"headers":[{"name":"User-Agent","value":"insomnia/2023.5.8"}],"authentication":{},"metaSortKey":-1697743380507,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"wrk_e873df6ab47a42bc87d4dba329fad770","parentId":null,"modified":1697743351090,"created":1697743351090,"name":"Pastelaria","description":"","scope":"collection","_type":"workspace"},{"_id":"req_148343bd2e074ecc86bc01a180741a16","parentId":"wrk_e873df6ab47a42bc87d4dba329fad770","modified":1697744877018,"created":1697744867517,"url":"{{ _.host }}id/1","name":"Get By ID","description":"","method":"GET","body":{},"parameters":[],"headers":[{"name":"User-Agent","value":"insomnia/2023.5.8"}],"authentication":{},"metaSortKey":-1696540337551.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"env_336611e03937aa6920ed6ca34c8c070f0e402e39","parentId":"wrk_e873df6ab47a42bc87d4dba329fad770","modified":1697743351112,"created":1697743351112,"name":"Base Environment","data":{},"dataPropertyOrder":null,"color":null,"isPrivate":false,"metaSortKey":1697743351112,"_type":"environment"},{"_id":"jar_336611e03937aa6920ed6ca34c8c070f0e402e39","parentId":"wrk_e873df6ab47a42bc87d4dba329fad770","modified":1697743351125,"created":1697743351125,"name":"Default Jar","cookies":[],"_type":"cookie_jar"},{"_id":"env_5334959816b742f68543b55ba408781f","parentId":"env_336611e03937aa6920ed6ca34c8c070f0e402e39","modified":1697743515040,"created":1697743415655,"name":"developement","data":{"host":"http://localhost:8000/"},"dataPropertyOrder":{"&":["host"]},"color":"#44ff00","isPrivate":false,"metaSortKey":1697743415654,"_type":"environment"}]}
