@@ -50,8 +50,15 @@ $router->group(['prefix'=>'clients'], function() use ($router){
 // products routes
 $router->group(['prefix'=>'products'], function() use ($router){
     $router->post('create', 'ProductsController@store');
+    $router->get('list', 'ProductsController@list');
+    $router->get(
+        'id/{id}',
+        fn($id) => App\Http\Controllers\ProductsController::show($id));
     $router->post(
         'delete/{id}',
         fn($id) => App\Http\Controllers\ProductsController::delete($id));
-    $router->get('list', 'ProductsController@list');
+    $router->put(
+        'update/{id}',
+        fn($id) => App\Http\Controllers\ProductsController::update($id));
+
 });

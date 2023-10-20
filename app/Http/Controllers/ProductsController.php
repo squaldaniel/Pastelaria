@@ -16,7 +16,7 @@ use App\Models\ProductsModel;
 Class ProductsController extends Controller
 {
     /**
-     * finalizadas
+     * @param null
      */
     public function store(Request $request)
     {
@@ -32,19 +32,31 @@ Class ProductsController extends Controller
     }
     public static function show(int $id)
     {
-        //return ::find($id);
+        return ProductsModel::find($id);
     }
-
-
     public static function delete(int $id)
     {
         return ProductsModel::where("id", $id)->update([
             "deleted_at" => date("Y-m-d H:i:s")
         ]);
-        //return print_r(get_class_methods(ClientsModel::class));
     }
-    public function update(int $id, array $collumns)
+    public static function update(int $id)
     {
-
+        $request = json_decode(file_get_contents('php://input'));
+        $ObjResponse = ProductsModel::where("id", $id)
+        ->where('deleted_at', null)->get()->toArray();
+        if(count($ObjResponse) > 0){
+            $request = json_decode(file_get_contents('php://input'), true);
+            ProductsModel::where("id", $id)
+                    ->where('deleted_at', null)
+                    ->update($request);
+            return ProductsModel::where("id", $id)
+                    ->where('deleted_at', null)->get()->toArray();
+        } else {
+            return response(
+                json_encode(["message"=>'resource or item not found']),
+                 404
+                );
+        }
     }
 }
