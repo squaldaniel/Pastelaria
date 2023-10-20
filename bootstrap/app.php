@@ -24,7 +24,6 @@ $app = new Laravel\Lumen\Application(
 );
     //linhas descomentadas
  $app->withFacades();
-
  $app->withEloquent();
 
 /*
@@ -94,7 +93,7 @@ $app->configure('app');
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
-
+//$app->register(Illuminate\Support\EloquentServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

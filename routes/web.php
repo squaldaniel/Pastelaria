@@ -1,6 +1,7 @@
 <?php
 
 /** @var \Laravel\Lumen\Routing\Router $router */
+use App\Models\ProductsModel;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,32 +20,38 @@ $router->get('/', function () use ($router) {
 });
 $router->get('teste', function (){
 $dados = [
-    'nome'=>'daniel',
-    'email'=>'daniel2@mail.com',
-    'telefone'=>'11953610254',
-    'nascimento'=>'1981-01-05',
-    'endereco'=>'Rua da fortuna, 413',
-    'complemento'=>'Sobrado',
-    'bairro'=>'Macedo',
-    'cep' => '07197100'
+    'nome'=>'pastel de carne',
+    'preco'=>'5.50',
+    'foto'=>'img001.jpg'
 ];
-    return \ClientsModel::create($dados);
+    return ProductsModel::create($dados);
 });
 $router->get('pastel', 'ClientsController@tables');
+// Clients routes
 $router->group(['prefix'=>'clients'], function() use ($router){
     /**
      * finalizadas
      */
+    // List all
     $router->get('list', 'ClientsController@list');
+    // Create new
     $router->post('create', 'ClientsController@store');
+    // Get by id
     $router->get(
         'id/{id}',
         fn($id) => App\Http\Controllers\ClientsController::show($id));
     /**
      * trabalhando
      */
-    $router->get(
-        'clients/delete/',
-        fn($id) => App\Http\Controllers\ClientsController::show($id));
-
+    $router->post(
+        'delete/{id}',
+        fn($id) => App\Http\Controllers\ClientsController::delete($id));
+});
+// products routes
+$router->group(['prefix'=>'products'], function() use ($router){
+    $router->post('create', 'ProductsController@store');
+    $router->post(
+        'delete/{id}',
+        fn($id) => App\Http\Controllers\ProductsController::delete($id));
+    $router->get('list', 'ProductsController@list');
 });
