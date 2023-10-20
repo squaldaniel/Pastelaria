@@ -66,4 +66,7 @@ $router->get('mail', function(){
           ->to('daniel.santos.ap@gmail.com')
           ->subject('teste envio pastelaria');
       });
+      if ($mail == true){
+        return 'mail sended';
+      }
 });
