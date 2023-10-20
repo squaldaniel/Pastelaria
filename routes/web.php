@@ -2,6 +2,7 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 use App\Models\ProductsModel;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,23 +30,19 @@ $dados = [
 $router->get('pastel', 'ClientsController@tables');
 // Clients routes
 $router->group(['prefix'=>'clients'], function() use ($router){
-    /**
-     * finalizadas
-     */
     // List all
     $router->get('list', 'ClientsController@list');
     // Create new
     $router->post('create', 'ClientsController@store');
-    // Get by id
-    $router->get(
-        'id/{id}',
-        fn($id) => App\Http\Controllers\ClientsController::show($id));
-    /**
-     * trabalhando
-     */
-    $router->post(
+    // Show by id
+    $router->get('id/{id}',
+            fn($id) => App\Http\Controllers\ClientsController::show($id));
+    $router->delete(
         'delete/{id}',
         fn($id) => App\Http\Controllers\ClientsController::delete($id));
+    $router->put(
+            'update/{id}',
+            fn($id) => App\Http\Controllers\ClientsController::update($id));
 });
 // products routes
 $router->group(['prefix'=>'products'], function() use ($router){
@@ -54,11 +51,19 @@ $router->group(['prefix'=>'products'], function() use ($router){
     $router->get(
         'id/{id}',
         fn($id) => App\Http\Controllers\ProductsController::show($id));
-    $router->post(
+    $router->delete(
         'delete/{id}',
         fn($id) => App\Http\Controllers\ProductsController::delete($id));
     $router->put(
         'update/{id}',
         fn($id) => App\Http\Controllers\ProductsController::update($id));
 
+});
+
+$router->get('mail', function(){
+    $mail = Mail::raw('Hello, welcome to Laravel!', function ($message) {
+        $message
+          ->to('daniel.santos.ap@gmail.com')
+          ->subject('teste envio pastelaria');
+      });
 });
