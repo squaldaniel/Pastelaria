@@ -42,11 +42,6 @@
                     if (count($request) > 0){
                         return  'XX';
                     }
-                    /*
-                    update([
-                        "deleted_at" => date("Y-m-d H:i:s")
-                    ]);
-                    */
 
                 }
             public static function update(int $id)
