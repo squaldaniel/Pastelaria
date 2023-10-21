@@ -19,15 +19,6 @@ $router->get('/', function () use ($router) {
     //return $router->app->version();
     return view('swagger.index');
 });
-$router->get('teste', function (){
-$dados = [
-    'nome'=>'pastel de carne',
-    'preco'=>'5.50',
-    'foto'=>'img001.jpg'
-];
-    return ProductsModel::create($dados);
-});
-$router->get('pastel', 'ClientsController@tables');
 // Clients routes
 $router->group(['prefix'=>'clients'], function() use ($router){
     // List all
@@ -58,6 +49,10 @@ $router->group(['prefix'=>'products'], function() use ($router){
         'update/{id}',
         fn($id) => App\Http\Controllers\ProductsController::update($id));
 
+});
+$router->group(['prefix' => 'orders'], function () use ($router){
+    $router->get('list', 'RequestsController@list');
+    $router->post('create', 'RequestsController@store');
 });
 
 $router->get('mail', function(){

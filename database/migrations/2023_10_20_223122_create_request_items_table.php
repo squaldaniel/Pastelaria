@@ -12,12 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::defaultStringLength(191);
-        Schema::create('requests', function (Blueprint $table) {
+        Schema::create('request_items', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('cod_client')->unsigned();
-            $table->foreign('cod_client')->references('id')->on('clients');
-            $table->double('total', 8,2)->nullable();
-            $table->timestamp('dt_request')->useCurrent();
+            $table->unsignedBigInteger('request_id');
+            $table->foreign('request_id')->references('id')->on('requests');
+            $table->unsignedBigInteger('item_order');
+            $table->foreign('item_order')->references('id')->on('products');
+            $table->timestamp('dt_order')->useCurrent();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('requests');
+        Schema::dropIfExists('request_items');
     }
 };

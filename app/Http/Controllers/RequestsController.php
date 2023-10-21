@@ -3,7 +3,7 @@
     namespace App\Http\Controllers;
 
     use Illuminate\Http\Request;
-    use App\Models\ProductsModel;
+    use App\Models\RequestsModel;
 
     /**
      * @autor: Daniels J Santos
@@ -13,14 +13,24 @@
      * Description: Recebe as requisições do grupo de rotas products
      *  e trata conforme endpoint
      */
-    Class ProductsController extends Controller
+    Class RequestsController extends Controller
         {
             /**
              * @param null
              */
             public function store(Request $request)
                 {
-                    return ProductsModel::create($request->all());
+                    $this->validate($request, [
+                        'products'=> 'required|array',
+                        'cod_client'=>'required|integer',
+                        'total'=>'required'
+                    ]);
+                    $client_id = $request->post('cod_client');
+                    $order = RequestsModel::create([
+                        'cod_client'=>$client_id
+                        ]);
+                    return $order->id;
+                    return RequestsModel::create($request->all());
                 }
             public static function show(int $id)
                 {
@@ -71,6 +81,15 @@
              */
             public function list()
                 {
-                    return ProductsModel::where('deleted_at', null)->get();
+                    return json_encode(RequestsModel::where('requests.deleted_at', null)
+                        ->join('clients',
+                            'requests.cod_client',
+                            '=',
+                            'clients.id')
+                        ->join('products',
+                            'requests.cod_product',
+                            '=',
+                            'products.id')
+                            ->get());
                 }
         }
