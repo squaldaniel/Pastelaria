@@ -12,4 +12,8 @@ Class ProductsModel extends Model {
         'preco',
         'foto'
     ];
+    public function products()
+        {
+            return $this->belongsToMany(RequestsItemsModel::class, 'request_item.products');
+        }
 }

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('request_id');
             $table->foreign('request_id')->references('id')->on('requests');
-            $table->unsignedBigInteger('item_order');
-            $table->foreign('item_order')->references('id')->on('products');
+            $table->unsignedBigInteger('products_id');
+            $table->foreign('products_id')->references('id')->on('products');
             $table->timestamp('dt_order')->useCurrent();
             $table->timestamps();
             $table->softDeletes();

@@ -4,6 +4,8 @@
 
     use Illuminate\Http\Request;
     use App\Models\RequestsModel;
+    use App\Models\RequestsItemsModel;
+    use App\Models\ProductsModel;
 
     /**
      * @autor: Daniels J Santos
@@ -20,17 +22,25 @@
              */
             public function store(Request $request)
                 {
+                    //validate fields
                     $this->validate($request, [
                         'products'=> 'required|array',
-                        'cod_client'=>'required|integer',
-                        'total'=>'required'
+                        'cod_client'=>'required|integer'
                     ]);
                     $client_id = $request->post('cod_client');
+                    $items_order = $request->post('products');
                     $order = RequestsModel::create([
                         'cod_client'=>$client_id
                         ]);
-                    return $order->id;
-                    return RequestsModel::create($request->all());
+                    foreach($items_order as $key=>$item){
+                        RequestsItemsModel::create([
+                            'products_id'=> $item,
+                            'request_id' => $order->id
+                            ]);
+                    }
+                    $order->total = $this->sumTotal($items_order);
+                    $order->save();
+                    return $order;
                 }
             public static function show(int $id)
                 {
@@ -81,15 +91,22 @@
              */
             public function list()
                 {
-                    return json_encode(RequestsModel::where('requests.deleted_at', null)
-                        ->join('clients',
-                            'requests.cod_client',
-                            '=',
-                            'clients.id')
-                        ->join('products',
-                            'requests.cod_product',
-                            '=',
-                            'products.id')
-                            ->get());
+                    return RequestsModel::where('requests.deleted_at', null)
+                            ->with('clients')->with('products')
+                            ->get()->toJson();
+                }
+            /**
+             * @param array $tems : array com ids dos products
+             * @return decimal number
+             */
+            public function sumTotal(Array $items)
+                {
+                    $total = 0;
+                    foreach($items as $key=>$item){
+                        $price = json_decode(ProductsModel::select('preco')
+                                ->where('id', $item)->pluck('preco'), true);
+                        $total += $price[0];
+                        }
+                    return $total;
                 }
         }

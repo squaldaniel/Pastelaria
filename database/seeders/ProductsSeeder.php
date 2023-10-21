@@ -20,7 +20,7 @@ class ProductsSeeder extends Seeder
             ]);
         ProductsModel::create([
             'nome'=>'Pastel de Frango',
-            'preco'=> 5,
+            'preco'=> 5.25,
             'foto'=>'http://localhost/img002.jpg',
             ]);
         ProductsModel::create([
@@ -35,7 +35,7 @@ class ProductsSeeder extends Seeder
             ]);
         ProductsModel::create([
             'nome'=>'Pastel de Calabresa',
-            'preco'=> 8.5,
+            'preco'=> 8.7,
             'foto'=>'http://localhost/img006.jpg',
             ]);
     }

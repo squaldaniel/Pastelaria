@@ -65,3 +65,7 @@ $router->get('mail', function(){
         return 'mail sended';
       }
 });
+$router->get('testedados', function(){
+    $requestitem = App\Models\RequestsItemsModel::find(1);
+    return $requestitem->with('products')->get();
+});
