@@ -31,7 +31,7 @@ class ClientsSeeder extends Seeder
             'endereco'=>'mu lu street, 998',
             'complemento'=>'',
             'bairro'=>'pv huhan',
-            'cep'=>'98956655'
+            'cep'=>'9895665'
             ]);
         ClientsModel::create([
             'nome'=>'Felix cat',

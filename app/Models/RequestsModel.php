@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\RequestsItemsModel;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 Class RequestsModel extends Model {
+    use SoftDeletes;
     public $table = 'requests';
     public $fillable = [
         'cod_client',
@@ -13,14 +14,21 @@ Class RequestsModel extends Model {
         'total',
         'dt_request'
     ];
+    protected $hidden = [
+        'updated_at',
+        'created_at',
+        'deleted_at'
+    ];
+    protected $dates = ['deleted_at'];
     public function clients()
         {
-            return $this->hasOne(ClientsModel::class, 'id')->where('clients.deleted_at', null);
+            return $this->hasOne(ClientsModel::class, 'id')
+                ->where('clients.deleted_at', null);
         }
     public function products()
         {
-            return $this->hasMany(RequestsItemsModel::class, 'products')
-            //->with('products')
-            ;
+            return $this->hasMany(RequestsItemsModel::class, 'request_id')
+                    ->with('products')
+                    ->where('request_items.deleted_at', null);
         }
 }
