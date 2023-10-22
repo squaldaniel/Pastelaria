@@ -70,8 +70,4 @@ use App\Models\ProductsModel;
             'update/{id}',
             fn($id) => App\Http\Controllers\RequestsController::update($id));
         });
-    // Testes
-    $router->get('testedados', function(){
-        $requestitem = App\Models\RequestsItemsModel::find(1);
-        return $requestitem->with('products')->get();
-    });
+

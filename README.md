@@ -10,3 +10,5 @@ Use-a como base para sua API com Lumen Framework.
 ## Para testar a aplicação
 
 Para que possa testar esta aplicação, clone o repositório em seu computador, tenha a versão do PHP > 8.0, uma Base de dados compativel com Lûmen, como MariaDB ou Mysql
+Em um terminal do Powershell (Windows) ou no Seu terminal linux execute o comando :
+docker build --pull --rm -f "Dockerfile" -t donamassa "."
