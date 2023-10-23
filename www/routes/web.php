@@ -16,7 +16,7 @@ use App\Models\ProductsModel;
 */
 
     $router->get('/', function () use ($router) {
-        return view('swagger.index');
+        return view('index');
         });
     // Clients routes
     $router->group(['prefix'=>'clients'], function() use ($router){

@@ -11,4 +11,14 @@ Use-a como base para sua API com Lumen Framework.
 
 Para que possa testar esta aplicação, clone o repositório em seu computador, tenha a versão do PHP > 8.0, uma Base de dados compativel com Lûmen, como MariaDB ou Mysql
 Em um terminal do Powershell (Windows) ou no Seu terminal linux execute o comando :
-docker build --pull --rm -f "Dockerfile" -t donamassa "."
+
+docker compose -f "docker-compose.yml" up -d --build
+
+Apos os containers estiverem startados, acesse seu terminal docker e execute
+os seguintes comandos na order:
+- para instalar dependências:
+docker exec coopetest-www-1 sh -c "composer install"
+- para executar as migrações do banco de dados:
+docker exec coopetest-www-1 sh -c "php artisan migrate"
+- para semear o banco com informações iniciais:
+docker exec coopetest-www-1 sh -c "php artisan db:seed"
