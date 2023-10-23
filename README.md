@@ -29,4 +29,6 @@ para semear o banco com informações iniciais:
 ```shell
 docker exec [nome-container-www] sh -c "php artisan db:seed"
 ```
- 
+# Requests
+
+o Arquivo 'Insomnia_pastelaria_requests.json' contém as request que podem ser importadas na software Insomnia para testes dos endpoints
