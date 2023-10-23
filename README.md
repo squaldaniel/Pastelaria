@@ -18,10 +18,10 @@ Apos os containers estiverem startados, acesse seu terminal docker e execute
 os seguintes comandos na order:
 para instalar dependências:
 
- **docker exec coopetest-www-1 sh -c "composer install"**
+ "docker exec coopetest-www-1 sh -c "composer install""
 para executar as migrações do banco de dados:
 
- **docker exec coopetest-www-1 sh -c "php artisan migrate"**
+ "docker exec coopetest-www-1 sh -c "php artisan migrate""
 para semear o banco com informações iniciais:
 
- **docker exec coopetest-www-1 sh -c "php artisan db:seed"**
+ "docker exec coopetest-www-1 sh -c "php artisan db:seed""
