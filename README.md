@@ -33,6 +33,9 @@ docker exec [nome-container-www] sh -c "php artisan db:seed"
 
 o Arquivo `Insomnia_pastelaria_requests.json` contém as request que podem ser importadas na software Insomnia para testes dos endpoints
 
+## arquivo .env
+ no arquivo .env, coloque as configurações de seu provedor de e-mail para que os emails sejam enviados. para testes recomendamos o https://mailtrap.io/
+ 
 
 Espero que gostem do projetinho 😉
 até a próxima!!
