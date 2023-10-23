@@ -17,11 +17,13 @@ docker compose -f "docker-compose.yml" up -d --build
 Apos os containers estiverem startados, acesse seu terminal docker e execute
 os seguintes comandos na order:
 para instalar dependências:
-
+```shell
  docker exec coopetest-www-1 sh -c "composer install"
+```
 para executar as migrações do banco de dados:
-
+```shell
  docker exec coopetest-www-1 sh -c "php artisan migrate"
+```
 para semear o banco com informações iniciais:
 
 ```shell
