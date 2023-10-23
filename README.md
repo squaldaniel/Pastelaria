@@ -24,7 +24,7 @@ para executar as migrações do banco de dados:
  docker exec coopetest-www-1 sh -c "php artisan migrate"
 para semear o banco com informações iniciais:
 
- ```shell
+```shell
 docker exec coopetest-www-1 sh -c "php artisan db:seed"
 ```
  
